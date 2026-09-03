@@ -1,17 +1,8 @@
 # Process
 
-Three loops run at once. This file is where they are written down so
-that "what is next" does not need a person. Text mode; no diagrams.
-
-## Cold open — the outer loop
-
-```
-S1 -> S2 Opening -> S3 Candidate shapes -> S4 Cognitive apprenticeship -> S5 Reflect
-   closed      closed        closed, locked          open, in progress              not started
-```
-
-Run 01 (status reporting) sits at S4. Loom is the thing being built
-inside S4. S5 has not started.
+Schema loop and render loop. A sitting rides one cycle of one of
+them. This file is where they are written down so that "what is next"
+does not need a person. Text mode; no diagrams.
 
 ## Plan gate — how a build starts
 
@@ -38,7 +29,7 @@ In that order. Open questions are not guessed: if the machine seats
 cannot settle one, work on that branch stops and the question is
 written down for the owner to rule on.
 
-## Product loops — locked in S3
+## Product loops
 
 ```
 schema loop (loom-warp)              render loop (loom-weave, loom-weave-<engine>)
