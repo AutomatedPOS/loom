@@ -4,8 +4,8 @@
 
 ## Card
 
-**Just did.** Root is an operation, same shape as loom-weave-godot. PROCESS.md OPEN closed. loom-warp and loom-weave have standalone operation roots. Apollo stays hand-written.
-**Next.** Weaver PDCA cycle one in loom-weave-godot. The self-render reads this tree once it runs.
+**Just did.** PROCESS.md OPEN closed. This root is type operation, isPartOf empty, same shape as loom-weave-godot. Apollo stays hand-written.
+**Next.** Same operation root on loom-warp (walkers skip tests/) and loom-weave. Then Weaver PDCA cycle one in loom-weave-godot.
 
 <!-- card:end -->
 
