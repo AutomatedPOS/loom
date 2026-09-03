@@ -15,14 +15,28 @@ inside S4. S5 has not started.
 
 ## Plan gate — how a build starts
 
+The kind of change picks the ceremony. Ruled 2026-09-03.
+
+```
+path, type, state, parent   ->  three thumbs
+prose                       ->  owner goes
+both                        ->  three thumbs
+```
+
+Structural changes are expensive to unwind, because other work gets
+written against them. Prose is cheap: rewrite it. A structural change
+does not become prose because the diff is small.
+
+Three thumbs is:
+
 ```
 planning seat declares ready -> checking seat agrees -> owner goes -> one execution pass
 |<----------- planning laps, unlimited, nothing built ----------->|   single pass
 ```
 
-Three thumbs, in that order. Open questions are not guessed: if the
-machine seats cannot settle one, work on that branch stops and the
-question is written down for the owner to rule on.
+In that order. Open questions are not guessed: if the machine seats
+cannot settle one, work on that branch stops and the question is
+written down for the owner to rule on.
 
 ## Product loops — locked in S3
 
