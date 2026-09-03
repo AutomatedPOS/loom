@@ -1,0 +1,10 @@
+{
+  "guid": "50178c57-cb39-4c70-bfc3-0f6cb797a8f2",
+  "name": "reports-outside",
+  "type": "operation",
+  "actualStart": "2026-09-03",
+  "state": "active",
+  "isPartOf": "1abce9a0-21e5-446c-8de9-431e8b42c6e5",
+  "body": "Unassociated passes against the four tethered repos. Each numbered child is one pass. Findings already in the tree are named and not re-minted.",
+  "sourceVerified": false
+}

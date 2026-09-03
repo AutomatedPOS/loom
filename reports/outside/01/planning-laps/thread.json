@@ -1,0 +1,11 @@
+{
+  "guid": "90484382-e376-43d2-9cc6-a0173f842b95",
+  "name": "reports-outside-01-planning-laps",
+  "type": "risk",
+  "actualStart": "2026-09-03",
+  "state": "open",
+  "isPartOf": "4bfb6de0-6c5b-4942-8408-514e2cd18a36",
+  "representedBy": "../../../../artifacts/outside-01/review.md",
+  "body": "Unlimited planning laps and a single execution pass, one person plus agents. The outside pass says the loop mints specs faster than passes. Broader than plans/process-cards/pain-32.",
+  "sourceVerified": false
+}

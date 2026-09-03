@@ -1,0 +1,11 @@
+{
+  "guid": "0131e1bd-9f9f-4681-b0d3-66784e76ad66",
+  "name": "reports-outside-01-live-decision",
+  "type": "issue",
+  "actualStart": "2026-09-03",
+  "state": "open",
+  "isPartOf": "4bfb6de0-6c5b-4942-8408-514e2cd18a36",
+  "representedBy": "../../../../artifacts/outside-01/review.md",
+  "body": "A decision with options and none chosen is a validation error. That is locked. The outside pass says the lock prevents recording a decision while it is still a decision. Relates to plans/warp-v1/chose-is-prose.",
+  "sourceVerified": false
+}

@@ -1,0 +1,11 @@
+{
+  "guid": "25c23460-6f48-418a-ac38-e31f7ff49b0e",
+  "name": "reports-outside-01-capture-cost",
+  "type": "issue",
+  "actualStart": "2026-09-03",
+  "state": "open",
+  "isPartOf": "4bfb6de0-6c5b-4942-8408-514e2cd18a36",
+  "representedBy": "../../../../artifacts/outside-01/review.md",
+  "body": "Logging one node is a folder, a GUID, a type, conditional requireds, and format_thread --write. The outside pass says that loses to a text box. Relates to plans/shuttle.",
+  "sourceVerified": false
+}

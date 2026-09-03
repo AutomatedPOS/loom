@@ -1,0 +1,11 @@
+{
+  "guid": "f391f21e-5e77-4f6e-b20d-22dd17efc984",
+  "name": "reports-outside-01-glossary",
+  "type": "issue",
+  "actualStart": "2026-09-03",
+  "state": "open",
+  "isPartOf": "4bfb6de0-6c5b-4942-8408-514e2cd18a36",
+  "representedBy": "../../../../artifacts/outside-01/review.md",
+  "body": "Warp, weave, shuttle, thread, card, seat, lap, minted, galaxy, probe, cold open. No glossary.",
+  "sourceVerified": false
+}
