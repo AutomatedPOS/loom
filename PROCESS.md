@@ -33,15 +33,29 @@ written down for the owner to rule on.
 
 ```
 schema loop (loom-warp)              render loop (loom-weave, loom-weave-<engine>)
-triggered change control             continuous PDCA, loose on purpose
+triggered change control             PDCA, one cycle at a time
             \                              /
              \--- cross only on a block --/
 ```
 
 The schema loop is configuration change control (NIST SP 800-128
-shape): triggered, not continuous. The render loop is plan, do,
-check, act: continuous, no terminal date. They cross only when one
-blocks the other.
+shape): triggered, not continuous.
+
+The render loop is PDCA. Ruled 2026-09-03. Not loose.
+
+```
+plan -> do -> check -> act -> next cycle
+                         |
+                    commit / merge
+```
+
+One cycle is one turn. Stay on it until Act. Act is the commit, the
+merge, the close-out of that turn. Then the next cycle starts.
+Continuous means the loop has no terminal date, not that several
+cycles or chews run inside one sitting. Do not open a second chew
+inside a live cycle.
+
+They cross only when one blocks the other.
 
 ## Standing loops
 
