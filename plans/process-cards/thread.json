@@ -1,0 +1,11 @@
+{
+  "guid": "65005a4b-abf0-4f4c-ab97-b8657c34b854",
+  "name": "plans-process-cards",
+  "type": "plan",
+  "actualStart": "2026-09-03",
+  "actualEnd": "2026-09-03",
+  "state": "done",
+  "isPartOf": "1abce9a0-21e5-446c-8de9-431e8b42c6e5",
+  "body": "Process written down in PROCESS.md, cards on five READMEs, godot operation tree seeded, base-render-class decision recorded.",
+  "sourceVerified": false
+}

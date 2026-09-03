@@ -2,7 +2,7 @@
 
 ## Card
 
-**Just did.** PROCESS.md written. Base-render-class decision recorded at `decisions/base-render-class`.
+**Just did.** Fix-forward: `authored` option abandoned, fault 32 in the pain log, `plans/process-cards` added.
 **Next.** Slot spec, tracked at `specs/slot` in `loom-weave-godot`.
 **Context.** Renderer build, S4 of cold open run 01. Live node here: `plans/weave`, open. Execution node: `loom-weave-godot` root.
 
