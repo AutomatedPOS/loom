@@ -1,0 +1,10 @@
+{
+  "guid": "4bfb6de0-6c5b-4942-8408-514e2cd18a36",
+  "name": "reports-outside-01",
+  "type": "report",
+  "actualStart": "2026-09-03",
+  "isPartOf": "50178c57-cb39-4c70-bfc3-0f6cb797a8f2",
+  "representedBy": "../../../artifacts/outside-01/review.md",
+  "body": "First unassociated pass. Disposition is in the artifact. New cracks are children of this report.",
+  "sourceVerified": false
+}

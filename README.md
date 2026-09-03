@@ -2,7 +2,7 @@
 
 ## Card
 
-**Just did.** Slot spec landed in `loom-weave-godot`. Fault 33 logged.
+**Just did.** Outside review 01 ingested. Findings already in the tree were named and not re-minted. New cracks sit under `reports/outside/01`.
 **Next.** Loom self-render: turn one reads this tree as a working status view.
 **Context.** Render loop, turn one, S4 of . Node: `plans/render-turn-one`, open. Execution node: `self-render` in `loom-weave-godot`.
 

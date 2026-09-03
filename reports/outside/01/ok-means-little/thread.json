@@ -1,0 +1,11 @@
+{
+  "guid": "2b26e1e5-eb21-4482-b5aa-2beb6509c34f",
+  "name": "reports-outside-01-ok-means-little",
+  "type": "risk",
+  "actualStart": "2026-09-03",
+  "state": "open",
+  "isPartOf": "4bfb6de0-6c5b-4942-8408-514e2cd18a36",
+  "representedBy": "../../../../artifacts/outside-01/review.md",
+  "body": "The one-node-shape lock means every known field is legal on every type. The outside pass says a GRC reader will treat that green as certified. The lock stays. This is the audience mismatch. Relates to plans/warp-v1/one-node-shape.",
+  "sourceVerified": false
+}
