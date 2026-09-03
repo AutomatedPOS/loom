@@ -1,4 +1,4 @@
-# VALIDATE.md — loom-warp v1.0.0
+# VALIDATE.md — loom-warp v1.1.0
 
 Same rules as `thread.schema.json` and the validators.
 An LLM checks its own `thread.json` against this file. Do not invent
@@ -219,6 +219,38 @@ at the option node.
 
 ---
 
+## Close-out — `justDid`, `next`, `waitingOn`
+
+Three optional prose strings. Added v1.1.0.
+
+Optional on every type. The one-shape rule does not let a field be
+forbidden by type, so the schema allows them anywhere. The writer
+convention is narrower: the node carrying them is the one running the
+work.
+
+An operation does not end, so close-out is the end of a **turn**, not
+the end of the operation. At the end of an execution pass the three
+fields are rewritten in the same commit as the work.
+
+`waitingOn` absent means nothing is blocking. It does not mean nobody
+filled it in.
+
+**No staleness check. Do not add one.** The obvious next move is a
+WARNING when an `active` node has no `next`, or when these fields are
+older than the last commit touching the node. That is the
+re-assertion treadmill v1 already locked out when it rejected any
+"still true as of" field. Silence reads as silence. Reopen that lock
+first or leave it alone.
+
+The README card is a **view** of these three fields, generated
+between `<!-- card:start -->` and `<!-- card:end -->` by `card.py`.
+Nobody authors a card by hand. `card.py --check` fails when a README
+disagrees with its node, which is what keeps the two from drifting.
+A repo with no `thread.json` has no node to read and therefore has no
+generated card.
+
+---
+
 ## Extension block — `props`
 
 OSCAL naming (tutorial:
@@ -354,6 +386,9 @@ diffs; scrambled keys make a two-value edit look like a full rewrite.
   keep using `actualStart` and the sentence in the date notes above.
 - A structured GUID beside `chose`. Rejected. Stay rejected.
 - Actual-date type×state cells except `workItem` + `done` → actuals.
+- Which node carries the close-out fields in a repo with no
+  `thread.json`. Either such a repo gains a root node or it keeps a
+  hand-written card. Not ruled; do not pick one in output.
 
 ---
 
