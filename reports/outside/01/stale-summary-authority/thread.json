@@ -1,0 +1,17 @@
+{
+  "guid": "e60ce1f7-f20a-4432-8887-d89293eeb73f",
+  "name": "reports-outside-01-stale-summary-authority",
+  "type": "risk",
+  "actualStart": "2026-09-03",
+  "state": "open",
+  "isPartOf": "4bfb6de0-6c5b-4942-8408-514e2cd18a36",
+  "body": "Unmitigated. An agent's internal recollection of a lock outranks the written lock, because the written lock was not opened before asserting. Recurred across sittings. Every prior mitigation was a rule the agent agreed to and broke. Only mechanical mitigation counts: the lock lives in a file that must be opened, and recollection is not a permitted source. Same shape as sourceVerified — an agent cannot self-certify.",
+  "props": [
+    {
+      "name": "recurrence",
+      "value": "6",
+      "remarks": "Sittings where recollection outranked the written lock."
+    }
+  ],
+  "sourceVerified": false
+}

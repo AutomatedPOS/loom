@@ -3,9 +3,9 @@
   "name": "reports-outside-01-live-decision",
   "type": "issue",
   "actualStart": "2026-09-03",
-  "state": "open",
+  "state": "done",
   "isPartOf": "4bfb6de0-6c5b-4942-8408-514e2cd18a36",
   "representedBy": "../../../../artifacts/outside-01/review.md",
-  "body": "A decision with options and none chosen is a validation error. That is locked. The outside pass says the lock prevents recording a decision while it is still a decision. Relates to plans/warp-v1/chose-is-prose.",
+  "body": "Exactly-one-chosen stands. A live matter is an issue with option children, none chosen. On ruling, mint a decision with one chosen. Type never changes. Written into VALIDATE.md.",
   "sourceVerified": false
 }

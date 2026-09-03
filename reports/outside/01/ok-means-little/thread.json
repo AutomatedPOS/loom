@@ -5,7 +5,8 @@
   "actualStart": "2026-09-03",
   "state": "open",
   "isPartOf": "4bfb6de0-6c5b-4942-8408-514e2cd18a36",
+  "mitigatedBy": "3c264a4c-d8a2-46d0-be0d-6590d2c7e92d",
   "representedBy": "../../../../artifacts/outside-01/review.md",
-  "body": "The one-node-shape lock means every known field is legal on every type. The outside pass says a GRC reader will treat that green as certified. The lock stays. This is the audience mismatch. Relates to plans/warp-v1/one-node-shape.",
+  "body": "Accepted. ok means the tree is well-formed; it has never meant the contents are true. sourceVerified is the truth field and is human-only. Mitigation sits on loom-weave: the renderer states what ok covers, adjacent to the status. Lock stays.",
   "sourceVerified": false
 }

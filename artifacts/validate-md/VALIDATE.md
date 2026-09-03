@@ -1,4 +1,4 @@
-# VALIDATE.md — loom-warp v1.0.0
+# VALIDATE.md — loom-warp v1.1.0
 
 Same rules as `thread.schema.json` and the validators.
 An LLM checks its own `thread.json` against this file. Do not invent
@@ -12,7 +12,8 @@ current JSON Schema are accepted. Do not treat them as a defect to
 fix.
 
 Locked unless marked OPEN. Source: files 24, 30, 34,
-brief r2 (supersedes file 35), sitting 10, walk packet 11 (file 36).
+brief r2 (supersedes file 35), sitting 10, walk packet 11 (file 36),
+outside-01 rulings 2026-09-03.
 
 ---
 
@@ -67,7 +68,7 @@ sides on the same terms.
 | field | rule |
 |---|---|
 | `guid` | UUID, minted on creation, immutable. |
-| `name` | Folder path from repo root, flattened with hyphens. `loom/weave/godot` → `loom-weave-godot`. |
+| `name` | Free text. Convention is folder path from repo root, flattened with hyphens. The validator does not check it. |
 | `type` | One of the twelve values below. camelCase. |
 
 Everything else on the shape may be omitted unless a conditional
@@ -97,6 +98,15 @@ human opened the source and confirmed the value.
 
 Adding a type later is a minor version bump. Do not add one in this
 file.
+
+### decision — live vs ruled
+
+A live matter is not a `decision` node. While it is still open, record
+it as an `issue` with `option` children, none `chosen`. On ruling, mint
+a `decision` with exactly one `chosen` option. `type` never changes, so
+the issue stays an issue (`state` `done`) and the decision is a new
+node. Same shape as an unplanned event on the Apollo probe: the
+unsettled thing is an `issue` until it is ruled. No new field.
 
 ### Date notes you must not "fix"
 
@@ -190,22 +200,33 @@ count; usage weight is the count of nodes pointing at that GUID.
 
 ## Pointers
 
-All of these hold a GUID except the two called out.
+`isPartOf` is local. The other GUID fields hold a bare GUID or a
+deliberate crossing `repo:GUID` (example: `loom-shuttle:7d672315-545b-43e2-8ed9-9ad302bb7a4d`).
+Repo is the tethered repo name. The validator never opens another repo.
 
 | field | holds | notes |
 |---|---|---|
-| `isPartOf` | GUID or empty string | Empty allowed at repo root only. Everywhere else, ERROR. |
-| `supersedes` | GUID | Old node stays. |
+| `isPartOf` | GUID or empty string | Empty allowed at repo root only. Everywhere else, ERROR. Must equal the GUID of the nearest ancestor folder that holds a `thread.json`. Name is not part of this check. |
+| `supersedes` | GUID or `repo:GUID` | Old node stays. A re-homed child records origin here, not in prose. |
 | `supersededBecause` | free text | Deliberately uncheckable. Do not require a length. |
-| `abandonedScope` | GUID | |
-| `realizedAs` | GUID | Risk → the issue it became. |
-| `voidedPlan` | GUID | Issue → the plan it killed. |
-| `mitigatedBy` | GUID | |
-| `blockedBy` | GUID | Waiting node points at the blocker. The blocker holds nothing. |
+| `abandonedScope` | GUID or `repo:GUID` | |
+| `realizedAs` | GUID or `repo:GUID` | Risk → the issue it became. |
+| `voidedPlan` | GUID or `repo:GUID` | Issue → the plan it killed. |
+| `mitigatedBy` | GUID or `repo:GUID` | |
+| `blockedBy` | GUID or `repo:GUID` | Waiting node points at the blocker. The blocker holds nothing. |
 | `representedBy` | **path**, not GUID | The artefact is a file. |
 
-A node outliving a superseded parent keeps pointing at that parent.
-Never reparent.
+Do not rewrite `isPartOf` on an existing node. Re-home by minting a
+successor whose `isPartOf` matches the new folder and whose
+`supersedes` names the old node. A mismatch between `isPartOf` and
+folder position is an ERROR: it surfaces when a parent is abandoned
+while children are live and forces a choice — re-home the child or
+close it with the parent.
+
+A pointer whose target is outside this repo is a WARNING, not an
+ERROR, permanently. Bare GUID that does not resolve locally stays
+loud. `repo:GUID` marks a deliberate crossing. A later aggregate
+index is a consumer, not a certifier.
 
 ---
 
@@ -216,6 +237,38 @@ Never reparent.
 For `type: decision`, `context`, `chose`, and `consequences` are
 required. `chose` is a sentence about what was picked, not a pointer
 at the option node.
+
+---
+
+## Close-out — `justDid`, `next`, `waitingOn`
+
+Three optional prose strings. Added v1.1.0.
+
+Optional on every type. The one-shape rule does not let a field be
+forbidden by type, so the schema allows them anywhere. The writer
+convention is narrower: the node carrying them is the one running the
+work.
+
+An operation does not end, so close-out is the end of a **turn**, not
+the end of the operation. At the end of an execution pass the three
+fields are rewritten in the same commit as the work.
+
+`waitingOn` absent means nothing is blocking. It does not mean nobody
+filled it in.
+
+**No staleness check. Do not add one.** The obvious next move is a
+WARNING when an `active` node has no `next`, or when these fields are
+older than the last commit touching the node. That is the
+re-assertion treadmill v1 already locked out when it rejected any
+"still true as of" field. Silence reads as silence. Reopen that lock
+first or leave it alone.
+
+The README card is a **view** of these three fields, generated
+between `<!-- card:start -->` and `<!-- card:end -->` by `card.py`.
+Nobody authors a card by hand. `card.py --check` fails when a README
+disagrees with its node, which is what keeps the two from drifting.
+A repo with no `thread.json` has no node to read and therefore has no
+generated card.
 
 ---
 
@@ -297,18 +350,21 @@ the tree.
    this repo. The index of GUIDs is derived from `thread.json` files
    already in the repo plus the files under check. Do not invent a
    second file format for the index.
-3. **Dangling pointer.** A GUID pointer names a node that is not in
-   this repo's `thread.json` set. That is how "deleted a node another
-   node points at" is detected. Empty `isPartOf` is not a pointer.
-4. **Decision chosen-count.** A node with `type: decision` must have
+3. **Decision chosen-count.** A node with `type: decision` must have
    **exactly one** child (folder child and/or `threads[]` item) whose
    `type` is `option` and whose `state` is `chosen`. Zero is ERROR.
    Two or more is ERROR. The decision file does not point down at the
-   winner.
-5. **`isPartOf` empty off-root.** The `thread.json` sitting in the
+   winner. Do not mint a `decision` until that count is one. While
+   open, the matter is an `issue` with `option` children, none
+   `chosen`.
+4. **`isPartOf` empty off-root.** The `thread.json` sitting in the
    directory being validated as repo root may have `isPartOf` omitted,
    `""`, or empty. Every other `thread.json` must have a UUID in
    `isPartOf`.
+5. **`isPartOf` folder mismatch.** Off-root, `isPartOf` must equal the
+   GUID of the nearest ancestor folder that holds a `thread.json`.
+   Nested `threads[]` items must name the containing node. Name is
+   not checked.
 
 ---
 
@@ -319,6 +375,10 @@ the tree.
 2. `supersedes` is set and `supersededBecause` is missing, empty, or
    only whitespace. Do **not** fail a short reason. A one-word reason
    is allowed. Expose thinness; do not judge it.
+3. A GUID pointer other than `isPartOf` names a node that is not in
+   this repo. Bare GUID stays loud (may be a typo). `repo:GUID` is a
+   deliberate crossing. Neither form is an ERROR. Empty `isPartOf`
+   is not a pointer.
 
 ---
 
@@ -334,7 +394,8 @@ command (`copy_thread.py` / `Copy-Thread.ps1`) must:
    at that node's new GUID.
 4. Set the copied root's `isPartOf` to the supplied parent GUID, or to
    empty if none was supplied.
-5. Rewrite `name` from the destination path, hyphen-flattened.
+5. `name` may be rewritten from the destination path, hyphen-flattened.
+   That is a convenience. The validator does not check `name`.
 
 ---
 
@@ -354,6 +415,9 @@ diffs; scrambled keys make a two-value edit look like a full rewrite.
   keep using `actualStart` and the sentence in the date notes above.
 - A structured GUID beside `chose`. Rejected. Stay rejected.
 - Actual-date type×state cells except `workItem` + `done` → actuals.
+- Which node carries the close-out fields in a repo with no
+  `thread.json`. Either such a repo gains a root node or it keeps a
+  hand-written card. Not ruled; do not pick one in output.
 
 ---
 
@@ -372,11 +436,13 @@ Work these in order. If any line is no, fix the JSON. Do not emit.
 - [ ] `option` is the only type with `state: chosen`.
 - [ ] Each `decision` has exactly one `option` beneath it in state
       `chosen`. The decision does not point at that option.
-- [ ] Pointers that hold GUIDs hold GUIDs. `representedBy` holds a
-      path. `supersededBecause` holds text.
+- [ ] Pointers that hold GUIDs hold a GUID or `repo:GUID`.
+      `representedBy` holds a path. `supersededBecause` holds text.
 - [ ] `isPartOf` is empty only on the repo-root node.
+- [ ] Off-root `isPartOf` matches the nearest ancestor `thread.json`.
 - [ ] No GUID is used twice.
-- [ ] Every non-empty GUID pointer names a node in this tree.
+- [ ] You did not mint a `decision` with zero chosen options. A live
+      matter is an `issue` with `option` children until ruled.
 - [ ] Unknown facts went into `props`, not new keys.
 - [ ] You did not add size, unit, missionClock, expiry, or
       still-true-as-of.

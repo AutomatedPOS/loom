@@ -3,9 +3,9 @@
   "name": "reports-outside-01-godot-vs-web",
   "type": "issue",
   "actualStart": "2026-09-03",
-  "state": "open",
+  "state": "done",
   "isPartOf": "4bfb6de0-6c5b-4942-8408-514e2cd18a36",
   "representedBy": "../../../../artifacts/outside-01/review.md",
-  "body": "First weave is Godot. The outside pass says the useful view is a read-only web page and that the cinematic bet eats it. Relates to plans/weave and plans/render-turn-one.",
+  "body": "Godot first. loom-weave-godot is the vehicle for render-turn-one. loom-weave-web follows and takes what the Godot build teases out. The harder renderer surfaces what a node must carry to be drawn. Real-time capture and API surface are secondary grounds.",
   "sourceVerified": false
 }

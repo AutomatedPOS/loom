@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -24,6 +25,14 @@ GUID_POINTERS = (
 
 SKIP_DIR_NAMES = {".git", "__pycache__", ".venv", "node_modules", "_incoming"}
 
+GUID_RE = re.compile(
+    r"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+)
+CROSS_POINTER_RE = re.compile(
+    r"^([A-Za-z0-9][A-Za-z0-9._\-]*):"
+    r"([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})$"
+)
+
 
 def load_schema() -> Draft202012Validator:
     with SCHEMA_PATH.open(encoding="utf-8") as fh:
@@ -40,11 +49,12 @@ def iter_thread_files(repo: Path) -> list[Path]:
     return sorted(files)
 
 
-def walk_nodes(data: dict, location: str):
-    yield location, data
+def walk_nodes(data: dict, location: str, file_path: Path | None, container_guid: str | None):
+    yield location, data, file_path, container_guid
+    guid = data.get("guid") if isinstance(data.get("guid"), str) else None
     for i, child in enumerate(data.get("threads") or []):
         if isinstance(child, dict):
-            yield from walk_nodes(child, f"{location}#/threads/{i}")
+            yield from walk_nodes(child, f"{location}#/threads/{i}", None, guid)
 
 
 def is_empty_parent(value) -> bool:
@@ -61,6 +71,43 @@ def folder_children(repo: Path, file_path: Path) -> list[Path]:
     return found
 
 
+def nearest_ancestor_thread(repo: Path, file_path: Path) -> Path | None:
+    """Nearest ancestor directory that holds thread.json. None if none."""
+    current = file_path.parent.parent
+    root = repo.resolve()
+    while True:
+        candidate = current / "thread.json"
+        if candidate.is_file():
+            return candidate
+        if current.resolve() == root:
+            return None
+        nxt = current.parent
+        if nxt == current:
+            return None
+        current = nxt
+
+
+def guid_from_thread_file(path: Path) -> str | None:
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    if not isinstance(data, dict):
+        return None
+    guid = data.get("guid")
+    return guid if isinstance(guid, str) else None
+
+
+def parse_guid_pointer(value: str) -> tuple[str | None, str | None]:
+    """Return (repo_or_None, guid) or (None, None) if the form is wrong."""
+    if GUID_RE.match(value):
+        return None, value
+    matched = CROSS_POINTER_RE.match(value)
+    if matched:
+        return matched.group(1), matched.group(2)
+    return None, None
+
+
 def validate_repo(repo: Path) -> int:
     validator = load_schema()
     errors: list[str] = []
@@ -72,7 +119,7 @@ def validate_repo(repo: Path) -> int:
         print("\n".join(errors), file=sys.stderr)
         return 1
 
-    nodes: list[tuple[str, dict, Path | None]] = []
+    nodes: list[tuple[str, dict, Path | None, str | None]] = []
     guid_index: dict[str, list[str]] = {}
 
     for file_path in files:
@@ -93,8 +140,10 @@ def validate_repo(repo: Path) -> int:
             where = f"{loc}:{path}" if path else loc
             errors.append(f"ERROR {where}: schema {err.message}")
 
-        for node_loc, node in walk_nodes(data, loc):
-            nodes.append((node_loc, node, file_path if node_loc == loc else None))
+        for node_loc, node, node_file, container_guid in walk_nodes(
+            data, loc, file_path, None
+        ):
+            nodes.append((node_loc, node, node_file, container_guid))
             guid = node.get("guid")
             if isinstance(guid, str) and guid:
                 guid_index.setdefault(guid, []).append(node_loc)
@@ -106,7 +155,7 @@ def validate_repo(repo: Path) -> int:
 
     root_file = repo / "thread.json"
 
-    for node_loc, node, file_path in nodes:
+    for node_loc, node, file_path, container_guid in nodes:
         parent = node.get("isPartOf")
         is_repo_root_file = file_path is not None and file_path.resolve() == root_file.resolve()
         if is_empty_parent(parent):
@@ -114,16 +163,40 @@ def validate_repo(repo: Path) -> int:
                 errors.append(
                     f"ERROR {node_loc}: isPartOf empty anywhere but the repo root"
                 )
-        elif isinstance(parent, str) and parent not in guid_index:
-            errors.append(
-                f"ERROR {node_loc}: isPartOf {parent} names a node not in this repo"
-            )
+        elif isinstance(parent, str):
+            if parent not in guid_index:
+                errors.append(
+                    f"ERROR {node_loc}: isPartOf {parent} names a node not in this repo"
+                )
+            else:
+                expected: str | None = None
+                if file_path is not None and not is_repo_root_file:
+                    ancestor = nearest_ancestor_thread(repo, file_path)
+                    if ancestor is not None:
+                        expected = guid_from_thread_file(ancestor)
+                elif container_guid:
+                    expected = container_guid
+                if expected is not None and parent != expected:
+                    errors.append(
+                        f"ERROR {node_loc}: isPartOf does not match folder position "
+                        f"(expected {expected})"
+                    )
 
         for field in GUID_POINTERS:
             value = node.get(field)
-            if isinstance(value, str) and value and value not in guid_index:
-                errors.append(
-                    f"ERROR {node_loc}: {field} {value} names a node not in this repo"
+            if not isinstance(value, str) or not value:
+                continue
+            repo_name, guid = parse_guid_pointer(value)
+            if guid is None:
+                continue
+            if repo_name is not None:
+                warnings.append(
+                    f"WARNING {node_loc}: {field} points outside this repo ({value})"
+                )
+                continue
+            if guid not in guid_index:
+                warnings.append(
+                    f"WARNING {node_loc}: {field} {value} names a node not in this repo"
                 )
 
         if node.get("type") == "decision":

@@ -3,9 +3,9 @@
   "name": "reports-outside-01-cross-repo-pointers",
   "type": "issue",
   "actualStart": "2026-09-03",
-  "state": "open",
+  "state": "done",
   "isPartOf": "4bfb6de0-6c5b-4942-8408-514e2cd18a36",
   "representedBy": "../../../../artifacts/outside-01/review.md",
-  "body": "four-repo left cross-repo pointers OPEN. They remain English in cards. The outside pass names that seam as load-bearing. Relates to four-repo.",
+  "body": "Allowed. A pointer whose target is outside this repo is a WARNING, permanently. Form is repo:GUID. Bare GUID that does not resolve locally stays loud. The validator never sees other repos. Written into VALIDATE.md.",
   "sourceVerified": false
 }

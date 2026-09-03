@@ -3,9 +3,9 @@
   "name": "reports-outside-01-glossary",
   "type": "issue",
   "actualStart": "2026-09-03",
-  "state": "open",
+  "state": "done",
   "isPartOf": "4bfb6de0-6c5b-4942-8408-514e2cd18a36",
   "representedBy": "../../../../artifacts/outside-01/review.md",
-  "body": "Warp, weave, shuttle, thread, card, seat, lap, minted, galaxy, probe, cold open. No glossary.",
+  "body": "Names are flavour, not load-bearing. loom README carries the four repos in plain words. Each repo README says what that repo does. No schema work. Icons later, optional.",
   "sourceVerified": false
 }

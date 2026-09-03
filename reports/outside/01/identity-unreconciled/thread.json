@@ -3,9 +3,9 @@
   "name": "reports-outside-01-identity-unreconciled",
   "type": "issue",
   "actualStart": "2026-09-03",
-  "state": "open",
+  "state": "done",
   "isPartOf": "4bfb6de0-6c5b-4942-8408-514e2cd18a36",
   "representedBy": "../../../../artifacts/outside-01/review.md",
-  "body": "name, isPartOf, and folder nesting are three identities. Nothing checks they agree. Relates to plans/warp-v1.",
+  "body": "On-disk is truth. isPartOf must agree with folder position. Mismatch is ERROR so an abandoned parent with live children forces a choice: re-home with supersedes, or close the child with the parent. Name stays free text. Check is in validate.py.",
   "sourceVerified": false
 }

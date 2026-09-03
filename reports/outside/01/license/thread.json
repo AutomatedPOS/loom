@@ -3,9 +3,9 @@
   "name": "reports-outside-01-license",
   "type": "issue",
   "actualStart": "2026-09-03",
-  "state": "open",
+  "state": "done",
   "isPartOf": "4bfb6de0-6c5b-4942-8408-514e2cd18a36",
   "representedBy": "../../../../artifacts/outside-01/review.md",
-  "body": "None of the tethered repos states a license.",
+  "body": "MIT on all four repos. Compatible with Godot; keeps attribution; leaves the door open for organisation-specific renderer forks. Where NASA material appears, an attribution note names the source.",
   "sourceVerified": false
 }

@@ -5,7 +5,8 @@
   "actualStart": "2026-09-03",
   "state": "open",
   "isPartOf": "4bfb6de0-6c5b-4942-8408-514e2cd18a36",
+  "blockedBy": "7d672315-545b-43e2-8ed9-9ad302bb7a4d",
   "representedBy": "../../../../artifacts/outside-01/review.md",
-  "body": "Logging one node is a folder, a GUID, a type, conditional requireds, and format_thread --write. The outside pass says that loses to a text box. Relates to plans/shuttle.",
+  "body": "Stays open. Not fixable in the schema and not owned by the renderer. Authoring is cheap once the shape is settled. The cost is in adapters. First adapter is the voice surface on the Godot renderer. Owned by loom-shuttle.",
   "sourceVerified": false
 }

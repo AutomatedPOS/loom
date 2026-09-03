@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "thread.schema.json",
   "title": "Loom thread node",
-  "description": "loom-warp v1.0.0. One node shape. Type never changes after creation; state does. Conditionals require fields; they never forbid them. Planned dates are optional on every type.",
+  "description": "loom-warp v1.1.0. One node shape. Type never changes after creation; state does. Conditionals require fields; they never forbid them. Planned dates are optional on every type. justDid/next/waitingOn are prose written at close-out; nothing requires them and absence means absent.",
   "$ref": "#/$defs/thread",
   "$defs": {
     "guid": {
@@ -13,6 +13,11 @@
     "guidOrEmpty": {
       "type": "string",
       "pattern": "^$|^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+    },
+    "guidPointer": {
+      "type": "string",
+      "description": "Bare GUID, or repo:GUID for a deliberate cross-repo pointer. isPartOf stays local.",
+      "pattern": "^([A-Za-z0-9][A-Za-z0-9._\\-]*:)?[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
     },
     "isoDate": {
       "type": "string",
@@ -61,7 +66,7 @@
         "name": {
           "type": "string",
           "minLength": 1,
-          "description": "Folder path from repo root, flattened with hyphens."
+          "description": "Free text. Convention is folder path flattened with hyphens; the validator does not check it."
         },
         "type": {
           "type": "string",
@@ -87,13 +92,13 @@
         "decidedDate": { "$ref": "#/$defs/isoDate" },
         "state": { "$ref": "#/$defs/stateWithChosen" },
         "isPartOf": { "$ref": "#/$defs/guidOrEmpty" },
-        "supersedes": { "$ref": "#/$defs/guid" },
+        "supersedes": { "$ref": "#/$defs/guidPointer" },
         "supersededBecause": { "type": "string" },
-        "abandonedScope": { "$ref": "#/$defs/guid" },
-        "realizedAs": { "$ref": "#/$defs/guid" },
-        "voidedPlan": { "$ref": "#/$defs/guid" },
-        "mitigatedBy": { "$ref": "#/$defs/guid" },
-        "blockedBy": { "$ref": "#/$defs/guid" },
+        "abandonedScope": { "$ref": "#/$defs/guidPointer" },
+        "realizedAs": { "$ref": "#/$defs/guidPointer" },
+        "voidedPlan": { "$ref": "#/$defs/guidPointer" },
+        "mitigatedBy": { "$ref": "#/$defs/guidPointer" },
+        "blockedBy": { "$ref": "#/$defs/guidPointer" },
         "representedBy": { "type": "string" },
         "body": { "type": "string" },
         "context": { "type": "string" },
@@ -102,6 +107,18 @@
           "description": "Prose. Not a pointer. Do not put a GUID here."
         },
         "consequences": { "type": "string" },
+        "justDid": {
+          "type": "string",
+          "description": "Prose. What the last close-out finished. Written by the node running the work, not maintained by hand."
+        },
+        "next": {
+          "type": "string",
+          "description": "Prose. What the next turn takes up."
+        },
+        "waitingOn": {
+          "type": "string",
+          "description": "Prose. What is blocking. Absent means nothing is blocking, not that nobody filled it in."
+        },
         "props": {
           "type": "array",
           "description": "OSCAL-style extension block. Base validator checks shape only; it does not read name/value meaning. Domain clocks (GET) go here.",
