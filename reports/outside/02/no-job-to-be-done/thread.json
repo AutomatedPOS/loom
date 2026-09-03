@@ -1,0 +1,11 @@
+{
+  "guid": "f97eae72-7a24-4d1a-b766-9401d7187a66",
+  "name": "reports-outside-02-no-job-to-be-done",
+  "type": "issue",
+  "actualStart": "2026-09-03",
+  "state": "open",
+  "isPartOf": "d7b05018-421f-4d2d-aaa6-688156b489b2",
+  "representedBy": "../../../../artifacts/outside-02/review.md",
+  "body": "No sentence in the four repos names a user, a competitor, or a job to be done. Apollo and Enron as galaxies are a museum exhibit. Relates to loom-apollo-13.",
+  "sourceVerified": false
+}

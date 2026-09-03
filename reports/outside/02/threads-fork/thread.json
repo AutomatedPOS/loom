@@ -1,0 +1,11 @@
+{
+  "guid": "c0ded645-d2d4-48e0-9608-9e47093ac9d9",
+  "name": "reports-outside-02-threads-fork",
+  "type": "issue",
+  "actualStart": "2026-09-03",
+  "state": "open",
+  "isPartOf": "d7b05018-421f-4d2d-aaa6-688156b489b2",
+  "representedBy": "../../../../artifacts/outside-02/review.md",
+  "body": "threads[] and subfolders are two legal representations of the same hierarchy. The decision chosen-count check has to handle both. Relates to plans/warp-v1.",
+  "sourceVerified": false
+}

@@ -1,0 +1,11 @@
+{
+  "guid": "054bc7e4-1aa8-46ce-b8b7-1a2a94d88dc8",
+  "name": "reports-outside-02-progress-simulator",
+  "type": "risk",
+  "actualStart": "2026-09-03",
+  "state": "open",
+  "isPartOf": "d7b05018-421f-4d2d-aaa6-688156b489b2",
+  "representedBy": "../../../../artifacts/outside-02/review.md",
+  "body": "Cards, decision nodes, and rulings produce commits and a sense of motion without shipped capability. Distinct from reports/outside/01/planning-laps, which counts laps. This is the reward function: documenting work outranks doing it.",
+  "sourceVerified": false
+}

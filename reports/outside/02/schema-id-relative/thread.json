@@ -1,0 +1,11 @@
+{
+  "guid": "136e053c-45c3-4f96-a0e2-c99cd8f0c2c6",
+  "name": "reports-outside-02-schema-id-relative",
+  "type": "issue",
+  "actualStart": "2026-09-03",
+  "state": "open",
+  "isPartOf": "d7b05018-421f-4d2d-aaa6-688156b489b2",
+  "representedBy": "../../../../artifacts/outside-02/review.md",
+  "body": "$id on thread.schema.json is the relative identifier thread.schema.json. Nothing downstream can resolve it. Relates to plans/warp-v1.",
+  "sourceVerified": false
+}

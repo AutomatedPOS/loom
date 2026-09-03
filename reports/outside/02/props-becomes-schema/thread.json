@@ -1,0 +1,11 @@
+{
+  "guid": "45f47eb8-e35a-4abf-84bc-58c57c3ebd9f",
+  "name": "reports-outside-02-props-becomes-schema",
+  "type": "risk",
+  "actualStart": "2026-09-03",
+  "state": "open",
+  "isPartOf": "d7b05018-421f-4d2d-aaa6-688156b489b2",
+  "representedBy": "../../../../artifacts/outside-02/review.md",
+  "body": "additionalProperties false and a frozen type enum push new concepts through props. Real usage can make the strict schema decorative. Distinct from reports/outside/01/ok-means-little, which is about what ok certifies. Relates to plans/warp-v1/one-node-shape.",
+  "sourceVerified": false
+}

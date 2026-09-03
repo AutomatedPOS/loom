@@ -1,0 +1,11 @@
+{
+  "guid": "cdc11375-f3c2-4b75-9706-60ca50f37c20",
+  "name": "reports-outside-02-render-loop-no-end",
+  "type": "issue",
+  "actualStart": "2026-09-03",
+  "state": "open",
+  "isPartOf": "d7b05018-421f-4d2d-aaa6-688156b489b2",
+  "representedBy": "../../../../artifacts/outside-02/review.md",
+  "body": "The render loop is continuous PDCA with no terminal date. Nothing in PROCESS.md forces a renderer to exist. Relates to plans/render-turn-one.",
+  "sourceVerified": false
+}

@@ -1,0 +1,10 @@
+{
+  "guid": "d7b05018-421f-4d2d-aaa6-688156b489b2",
+  "name": "reports-outside-02",
+  "type": "report",
+  "actualStart": "2026-09-03",
+  "isPartOf": "50178c57-cb39-4c70-bfc3-0f6cb797a8f2",
+  "representedBy": "../../../artifacts/outside-02/review.md",
+  "body": "Second unassociated pass. Disposition is in the artifact. New cracks are children of this report. Stale claims against already-ruled nodes are named and not re-minted.",
+  "sourceVerified": false
+}

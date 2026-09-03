@@ -1,0 +1,11 @@
+{
+  "guid": "122af62a-9c59-47b5-ab7a-cb27481789b4",
+  "name": "reports-outside-02-self-validated",
+  "type": "risk",
+  "actualStart": "2026-09-03",
+  "state": "open",
+  "isPartOf": "d7b05018-421f-4d2d-aaa6-688156b489b2",
+  "representedBy": "../../../../artifacts/outside-02/review.md",
+  "body": "The first render target is Loom's own tree. The schema has not met a project the author is not running. Apollo 13 is a reconstruction, not an adversarial second opinion. No scale.",
+  "sourceVerified": false
+}

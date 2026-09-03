@@ -2,7 +2,7 @@
 
 ## Card
 
-**Just did.** Outside-01 rulings recorded. Ten nodes under `reports/outside/01`. Identity check and cross-repo WARNING in the validator.
+**Just did.** Outside review 02 ingested. Findings already ruled were named and not re-minted. New cracks sit under `reports/outside/02`.
 **Next.** Loom self-render: turn one reads this tree as a working status view.
 **Context.** Render loop, turn one, S4 of . Node: `plans/render-turn-one`, open. Execution node: `self-render` in `loom-weave-godot`.
 
