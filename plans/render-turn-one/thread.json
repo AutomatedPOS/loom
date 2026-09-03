@@ -1,0 +1,10 @@
+{
+  "guid": "c246f99f-9346-4f36-bff9-3c9029f1d02e",
+  "name": "plans-render-turn-one",
+  "type": "plan",
+  "actualStart": "2026-09-03",
+  "state": "open",
+  "isPartOf": "1abce9a0-21e5-446c-8de9-431e8b42c6e5",
+  "body": "Turn one of the render loop. Slot spec landed as the plan step; the self-render reads loom's own tree.",
+  "sourceVerified": false
+}

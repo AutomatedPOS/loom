@@ -2,9 +2,9 @@
 
 ## Card
 
-**Just did.** Fix-forward: `authored` option abandoned, fault 32 in the pain log, `plans/process-cards` added.
-**Next.** Slot spec, tracked at `specs/slot` in `loom-weave-godot`.
-**Context.** Renderer build, S4 of cold open run 01. Live node here: `plans/weave`, open. Execution node: `loom-weave-godot` root.
+**Just did.** Slot spec landed in `loom-weave-godot`. Fault 33 logged.
+**Next.** Loom self-render: turn one reads this tree as a working status view.
+**Context.** Render loop, turn one, S4 of cold open run 01. Node: `plans/render-turn-one`, open. Execution node: `self-render` in `loom-weave-godot`.
 
 Signpost for Loom. Holds no code. Loom's own `thread.json` tree lives
 here; the folder tree is the index.
