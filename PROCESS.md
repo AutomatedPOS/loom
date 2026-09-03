@@ -59,3 +59,10 @@ card and the tree cannot disagree.
 The card changes in the same commit as the session file's `## Now`.
 Sessions are per repo, in `sessions/`, gitignored. A chat binds to
 the repo it opens in.
+
+### Outside review
+
+An unassociated pass lands as `artifacts/outside-NN` (the paste) and
+`reports/outside/NN` (the event). Findings already in the tree are
+named in the artifact and not re-minted. New cracks become issue or
+risk children of that report. A later chat binds to one child.
