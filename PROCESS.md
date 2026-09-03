@@ -63,13 +63,29 @@ is promoted up into `loom-weave` as the common contract. Godot then
 conforms to the thing it promoted. Nothing is authored into the
 common pack in advance.
 
-### Card and session move together
+### The card is a view
 
-Every repo README opens with a card: **Just did**, **Next**,
-**Context**. Context is the operation being executed and where its
-node sits; where the repo has a tree, it names the live node, so the
-card and the tree cannot disagree.
+Ruled 2026-09-03. Landed in loom-warp v1.1.0.
 
-The card changes in the same commit as the session file's `## Now`.
-Sessions are per repo, in `sessions/`, gitignored. A chat binds to
-the repo it opens in.
+Every repo README opens with a card: **Just did**, **Next**, **Waiting
+on**. Those are three fields on a node — `justDid`, `next`,
+`waitingOn` — written by the operation at close-out. `card.py` renders
+the README block between `<!-- card:start -->` and `<!-- card:end -->`.
+
+Nobody authors a card by hand. The earlier version of this rule said
+the card changes in the same commit as the session file's `## Now`,
+which is a rule a person has to remember. This one is a check:
+`card.py --check` fails when a README disagrees with its node.
+
+Close-out is the end of a **turn**, not the end of an operation.
+Operations do not end.
+
+Two repos still carry hand-written cards. `loom-warp` and `loom-weave`
+have no `thread.json`, so there is no node to read. Whether such a
+repo gains a root node or keeps a hand card is OPEN.
+
+`loom-apollo-13` keeps a hand card on purpose: its root is a finished
+1970 record, and live status does not get written onto a closed node.
+
+Sessions are per repo, in `sessions/`, gitignored. A chat binds to the
+repo it opens in.

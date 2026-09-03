@@ -1,10 +1,14 @@
 # loom
 
+<!-- card:start -->
+
 ## Card
 
-**Just did.** Slot spec landed in `loom-weave-godot`. Fault 33 logged.
+**Just did.** Close-out fields added to the schema at v1.1.0. The card is a generated view now, not authored text.
 **Next.** Loom self-render: turn one reads this tree as a working status view.
-**Context.** Render loop, turn one, S4 of . Node: `plans/render-turn-one`, open. Execution node: `self-render` in `loom-weave-godot`.
+**Waiting on.** A ruling on what the self-render's first screen shows.
+
+<!-- card:end -->
 
 Signpost for Loom. Holds no code. Loom's own `thread.json` tree lives
 here; the folder tree is the index.
