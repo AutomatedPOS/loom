@@ -1,0 +1,9 @@
+{
+  "guid": "aa85e76f-3d37-4e77-b01e-8130af9da290",
+  "name": "artifacts-validate-md",
+  "type": "artifact",
+  "actualEnd": "2026-09-03",
+  "isPartOf": "1abce9a0-21e5-446c-8de9-431e8b42c6e5",
+  "representedBy": "VALIDATE.md",
+  "sourceVerified": false
+}

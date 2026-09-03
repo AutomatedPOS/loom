@@ -1,0 +1,12 @@
+{
+  "guid": "abaf854c-38d6-4b1b-9f6c-623fe3c12b3d",
+  "name": "plans-warp-v1-json-not-yaml",
+  "type": "decision",
+  "decidedDate": "2026-09-02",
+  "state": "done",
+  "isPartOf": "706d91f0-f219-4687-89a3-75e0de5a6343",
+  "context": "On-disk format for thread.json.",
+  "chose": "JSON.",
+  "consequences": "YAML is abandoned. Schema validates the file on disk.",
+  "sourceVerified": false
+}

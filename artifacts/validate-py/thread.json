@@ -1,0 +1,9 @@
+{
+  "guid": "70654642-d19c-4aee-9914-e97622926d77",
+  "name": "artifacts-validate-py",
+  "type": "artifact",
+  "actualEnd": "2026-09-03",
+  "isPartOf": "1abce9a0-21e5-446c-8de9-431e8b42c6e5",
+  "representedBy": "validate.py",
+  "sourceVerified": false
+}

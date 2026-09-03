@@ -1,0 +1,12 @@
+{
+  "guid": "724d876d-a4a5-4337-97ee-bb4bec9bf370",
+  "name": "plans-warp-v1-type-never-changes",
+  "type": "decision",
+  "decidedDate": "2026-09-02",
+  "state": "done",
+  "isPartOf": "706d91f0-f219-4687-89a3-75e0de5a6343",
+  "context": "Whether a node's type may be rewritten after creation.",
+  "chose": "Type is set at creation and does not change. State changes.",
+  "consequences": "Two types that are structurally identical should have been one type with two states.",
+  "sourceVerified": false
+}

@@ -1,0 +1,9 @@
+{
+  "guid": "b77ae163-7cd1-4472-a67b-e6c064eb542a",
+  "name": "reports-packet-11",
+  "type": "report",
+  "actualStart": "2026-09-02",
+  "isPartOf": "1abce9a0-21e5-446c-8de9-431e8b42c6e5",
+  "representedBy": "../../artifacts/packet-11/36-walk-packet-11.md",
+  "sourceVerified": false
+}

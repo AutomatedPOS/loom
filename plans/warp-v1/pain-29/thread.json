@@ -1,0 +1,10 @@
+{
+  "guid": "5e1558c8-3cdb-4847-953f-c3cde71cd0ac",
+  "name": "plans-warp-v1-pain-29",
+  "type": "issue",
+  "actualStart": "2026-09-02",
+  "isPartOf": "706d91f0-f219-4687-89a3-75e0de5a6343",
+  "representedBy": "../../../artifacts/pain-log/pain-log.md",
+  "body": "Four-repo lock was reopened as if unset.",
+  "sourceVerified": false
+}
