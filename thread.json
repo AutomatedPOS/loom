@@ -5,7 +5,7 @@
   "actualStart": "2026-09-01",
   "state": "active",
   "isPartOf": "",
-  "justDid": "Root is an operation, same shape as loom-weave-godot. PROCESS.md OPEN closed. loom-warp and loom-weave have standalone operation roots. Apollo stays hand-written.",
-  "next": "Weaver PDCA cycle one in loom-weave-godot. The self-render reads this tree once it runs.",
+  "justDid": "PROCESS.md OPEN closed. This root is type operation, isPartOf empty, same shape as loom-weave-godot. Apollo stays hand-written.",
+  "next": "Same operation root on loom-warp (walkers skip tests/) and loom-weave. Then Weaver PDCA cycle one in loom-weave-godot.",
   "sourceVerified": false
 }

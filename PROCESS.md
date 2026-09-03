@@ -85,8 +85,8 @@ A repo that has no tree gains a standalone operation root: type
 `card.py` generates the README card from that node. Walkers skip
 `tests/` so fixture trees are not the repo tree. Ruled 2026-09-03.
 Closes the OPEN on which node carries close-out in a repo with no
-tree. `loom-warp` and `loom-weave` now have one. This repo's root
-is the same shape.
+tree. This repo's root is that shape. `loom-warp` and `loom-weave`
+receive the same root; warp walkers skip `tests/`.
 
 `loom-apollo-13` keeps a hand card on purpose: its root is a finished
 1970 record, and live status does not get written onto a closed node.
