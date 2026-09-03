@@ -1,0 +1,12 @@
+{
+  "guid": "d483029b-0ec1-40b8-acad-a4a8b5d7cc1d",
+  "name": "decisions-base-render-class",
+  "type": "decision",
+  "decidedDate": "2026-09-03",
+  "state": "done",
+  "isPartOf": "1abce9a0-21e5-446c-8de9-431e8b42c6e5",
+  "context": "Where the base render class lives. Authored into loom-weave in advance, or promoted up from a working weave.",
+  "chose": "Promote to common, then comply. Work happens in loom-weave-godot. When a shape proves out there it is promoted into loom-weave as the common contract, and godot then conforms to what it promoted.",
+  "consequences": "Nothing is authored into loom-weave in advance. Closes the OPEN item on the base render class. Recorded in the loom-weave README and in PROCESS.md.",
+  "sourceVerified": false
+}
