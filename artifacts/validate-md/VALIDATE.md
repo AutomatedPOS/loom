@@ -16,6 +16,20 @@ brief r2 (supersedes file 35), sitting 10, walk packet 11 (file 36).
 
 ---
 
+## What the rules are for
+
+The schema lets a human be human and an LLM be an LLM without either
+one pulling the other into nonsense. It protects the data, and it
+protects the process. A person working loosely and a model that is
+confidently wrong reinforce each other, and the result reads as solid
+while being garbage.
+
+Mess is fine. The sandbox is for drafting, guessing, and being wrong
+out loud. The commit gate is where that stops, and it stops for both
+sides on the same terms.
+
+---
+
 ## Hard stop — if you break these, the file is wrong
 
 1. One file type: `thread.json`. No YAML. No second kind of file.
