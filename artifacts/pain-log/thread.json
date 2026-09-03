@@ -1,0 +1,9 @@
+{
+  "guid": "acb32efd-8ef7-4dbe-9fc5-5425bac2155a",
+  "name": "artifacts-pain-log",
+  "type": "artifact",
+  "actualEnd": "2026-09-03",
+  "isPartOf": "1abce9a0-21e5-446c-8de9-431e8b42c6e5",
+  "representedBy": "pain-log.md",
+  "sourceVerified": false
+}

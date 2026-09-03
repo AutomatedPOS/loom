@@ -1,0 +1,180 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "thread.schema.json",
+  "title": "Loom thread node",
+  "description": "loom-warp v1.0.0. One node shape. Type never changes after creation; state does. Conditionals require fields; they never forbid them. Planned dates are optional on every type.",
+  "$ref": "#/$defs/thread",
+  "$defs": {
+    "guid": {
+      "type": "string",
+      "format": "uuid",
+      "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+    },
+    "guidOrEmpty": {
+      "type": "string",
+      "pattern": "^$|^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+    },
+    "isoDate": {
+      "type": "string",
+      "format": "date",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "stateShared": {
+      "type": "string",
+      "enum": ["open", "active", "done", "abandoned", "superseded"]
+    },
+    "stateWithChosen": {
+      "type": "string",
+      "enum": ["open", "active", "done", "abandoned", "superseded", "chosen"]
+    },
+    "prop": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "value"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "OSCAL token. No whitespace.",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._\\-]*$"
+        },
+        "value": {
+          "type": "string"
+        },
+        "ns": {
+          "type": "string",
+          "format": "uri"
+        },
+        "class": {
+          "type": "string"
+        },
+        "remarks": {
+          "type": "string"
+        }
+      }
+    },
+    "thread": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["guid", "name", "type"],
+      "properties": {
+        "guid": { "$ref": "#/$defs/guid" },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Folder path from repo root, flattened with hyphens."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "project",
+            "plan",
+            "report",
+            "scopeItem",
+            "workItem",
+            "artifact",
+            "issue",
+            "risk",
+            "measurement",
+            "operation",
+            "decision",
+            "option"
+          ]
+        },
+        "plannedStart": { "$ref": "#/$defs/isoDate" },
+        "plannedEnd": { "$ref": "#/$defs/isoDate" },
+        "actualStart": { "$ref": "#/$defs/isoDate" },
+        "actualEnd": { "$ref": "#/$defs/isoDate" },
+        "decidedDate": { "$ref": "#/$defs/isoDate" },
+        "state": { "$ref": "#/$defs/stateWithChosen" },
+        "isPartOf": { "$ref": "#/$defs/guidOrEmpty" },
+        "supersedes": { "$ref": "#/$defs/guid" },
+        "supersededBecause": { "type": "string" },
+        "abandonedScope": { "$ref": "#/$defs/guid" },
+        "realizedAs": { "$ref": "#/$defs/guid" },
+        "voidedPlan": { "$ref": "#/$defs/guid" },
+        "mitigatedBy": { "$ref": "#/$defs/guid" },
+        "blockedBy": { "$ref": "#/$defs/guid" },
+        "representedBy": { "type": "string" },
+        "body": { "type": "string" },
+        "context": { "type": "string" },
+        "chose": {
+          "type": "string",
+          "description": "Prose. Not a pointer. Do not put a GUID here."
+        },
+        "consequences": { "type": "string" },
+        "props": {
+          "type": "array",
+          "description": "OSCAL-style extension block. Base validator checks shape only; it does not read name/value meaning. Domain clocks (GET) go here.",
+          "items": { "$ref": "#/$defs/prop" }
+        },
+        "sourceVerified": {
+          "type": "boolean",
+          "default": false
+        },
+        "threads": {
+          "type": "array",
+          "description": "Zero or more child nodes. On disk this is subfolders, not this array.",
+          "items": { "$ref": "#/$defs/thread" }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "type": { "const": "report" } },
+            "required": ["type"]
+          },
+          "then": { "required": ["actualStart"] }
+        },
+        {
+          "if": {
+            "properties": { "type": { "const": "artifact" } },
+            "required": ["type"]
+          },
+          "then": { "required": ["actualEnd"] }
+        },
+        {
+          "if": {
+            "properties": { "type": { "const": "issue" } },
+            "required": ["type"]
+          },
+          "then": { "required": ["actualStart"] }
+        },
+        {
+          "if": {
+            "properties": { "type": { "const": "risk" } },
+            "required": ["type"]
+          },
+          "then": { "required": ["actualStart"] }
+        },
+        {
+          "if": {
+            "properties": { "type": { "const": "measurement" } },
+            "required": ["type"]
+          },
+          "then": { "required": ["actualStart"] }
+        },
+        {
+          "if": {
+            "properties": { "type": { "const": "decision" } },
+            "required": ["type"]
+          },
+          "then": {
+            "required": ["decidedDate", "context", "chose", "consequences"]
+          }
+        },
+        {
+          "if": {
+            "properties": { "type": { "const": "option" } },
+            "required": ["type"]
+          },
+          "then": {
+            "properties": { "state": { "$ref": "#/$defs/stateWithChosen" } }
+          },
+          "else": {
+            "properties": { "state": { "$ref": "#/$defs/stateShared" } }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "guid": "d7bfc8a2-4d00-407e-a3a1-f03cef29e184",
+  "name": "four-repo",
+  "type": "decision",
+  "decidedDate": "2026-09-02",
+  "state": "done",
+  "isPartOf": "1abce9a0-21e5-446c-8de9-431e8b42c6e5",
+  "context": "Repo layout for Loom. Signpost, schema, movers, and renderers as separate repos.",
+  "chose": "Four tethered repos. loom holds no code. loom-warp holds the schema. loom-shuttle holds movers. loom-weave holds renderers.",
+  "consequences": "First pull request is not a thread.json at loom root. Cross-repo pointers remain OPEN.",
+  "sourceVerified": false
+}

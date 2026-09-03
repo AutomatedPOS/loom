@@ -1,0 +1,9 @@
+{
+  "guid": "90a6580f-e507-4093-bab4-269de1f93b29",
+  "name": "artifacts-thread-schema",
+  "type": "artifact",
+  "actualEnd": "2026-09-03",
+  "isPartOf": "1abce9a0-21e5-446c-8de9-431e8b42c6e5",
+  "representedBy": "thread.schema.json",
+  "sourceVerified": false
+}

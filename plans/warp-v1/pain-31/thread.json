@@ -1,0 +1,10 @@
+{
+  "guid": "6b9a8d41-e70e-486b-b7e5-a3e9e952bc55",
+  "name": "plans-warp-v1-pain-31",
+  "type": "issue",
+  "actualStart": "2026-09-02",
+  "isPartOf": "706d91f0-f219-4687-89a3-75e0de5a6343",
+  "representedBy": "../../../artifacts/pain-log/pain-log.md",
+  "body": "Next-step sequence put thread.json at the loom signpost.",
+  "sourceVerified": false
+}

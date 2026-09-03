@@ -1,0 +1,12 @@
+{
+  "guid": "da7da9a3-87a4-4b83-b762-b2fefaacac13",
+  "name": "plans-warp-v1-chose-is-prose",
+  "type": "decision",
+  "decidedDate": "2026-09-02",
+  "state": "done",
+  "isPartOf": "706d91f0-f219-4687-89a3-75e0de5a6343",
+  "context": "Whether chose holds a GUID to the winning option.",
+  "chose": "chose is prose. It is not a pointer.",
+  "consequences": "The winning option is the unique child in state chosen. No downward pointer.",
+  "sourceVerified": false
+}
