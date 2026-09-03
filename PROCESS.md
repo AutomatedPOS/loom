@@ -76,11 +76,8 @@ is read from the tree and the weave, not from a README block.
 Do not put a Just did / Next / Waiting on heading in a README.
 `card.py` is deleted. Do not bring it back.
 
-`loom-warp` and `loom-weave` have no `thread.json`. Whether such a
-repo gains a root node is still OPEN. A hand-written README card is
-not the answer.
-
-`loom-apollo-13` writes no live status onto its finished 1970 root.
+Living repos carry a root `thread.json`. `loom-apollo-13` writes no
+live status onto its finished 1970 root.
 
 Sessions are per repo, in `sessions/`, gitignored. A chat binds to the
 repo it opens in.
