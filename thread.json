@@ -5,7 +5,7 @@
   "actualStart": "2026-09-01",
   "state": "active",
   "isPartOf": "",
-  "justDid": "Close-out fields added to the schema at v1.1.0. The card is a generated view now, not authored text.",
+  "justDid": "README cards removed across Loom. Status lives on the node and in the weave.",
   "next": "Weaver PDCA cycle one in loom-weave-godot. The self-render reads this tree once it runs.",
   "sourceVerified": false
 }

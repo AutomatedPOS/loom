@@ -63,29 +63,24 @@ is promoted up into `loom-weave` as the common contract. Godot then
 conforms to the thing it promoted. Nothing is authored into the
 common pack in advance.
 
-### The card is a view
+### README cards are gone
 
-Ruled 2026-09-03. Landed in loom-warp v1.1.0.
+Ruled 2026-09-03 as a generated view of `justDid`, `next`,
+`waitingOn`. Killed the same day: the README card confused both
+seats, and once the weave is running it is unused.
 
-Every repo README opens with a card: **Just did**, **Next**, **Waiting
-on**. Those are three fields on a node — `justDid`, `next`,
-`waitingOn` — written by the operation at close-out. `card.py` renders
-the README block between `<!-- card:start -->` and `<!-- card:end -->`.
+Those three fields stay on the node. Close-out is still the end of a
+**turn**, not the end of an operation. Operations do not end. Status
+is read from the tree and the weave, not from a README block.
 
-Nobody authors a card by hand. The earlier version of this rule said
-the card changes in the same commit as the session file's `## Now`,
-which is a rule a person has to remember. This one is a check:
-`card.py --check` fails when a README disagrees with its node.
+Do not put a Just did / Next / Waiting on heading in a README.
+`card.py` is deleted. Do not bring it back.
 
-Close-out is the end of a **turn**, not the end of an operation.
-Operations do not end.
+`loom-warp` and `loom-weave` have no `thread.json`. Whether such a
+repo gains a root node is still OPEN. A hand-written README card is
+not the answer.
 
-Two repos still carry hand-written cards. `loom-warp` and `loom-weave`
-have no `thread.json`, so there is no node to read. Whether such a
-repo gains a root node or keeps a hand card is OPEN.
-
-`loom-apollo-13` keeps a hand card on purpose: its root is a finished
-1970 record, and live status does not get written onto a closed node.
+`loom-apollo-13` writes no live status onto its finished 1970 root.
 
 Sessions are per repo, in `sessions/`, gitignored. A chat binds to the
 repo it opens in.
