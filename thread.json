@@ -6,7 +6,6 @@
   "state": "active",
   "isPartOf": "",
   "justDid": "Close-out fields added to the schema at v1.1.0. The card is a generated view now, not authored text.",
-  "next": "Loom self-render: turn one reads this tree as a working status view.",
-  "waitingOn": "A ruling on what the self-render's first screen shows.",
+  "next": "Weaver PDCA cycle one in loom-weave-godot. The self-render reads this tree once it runs.",
   "sourceVerified": false
 }
