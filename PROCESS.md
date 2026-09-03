@@ -80,9 +80,13 @@ which is a rule a person has to remember. This one is a check:
 Close-out is the end of a **turn**, not the end of an operation.
 Operations do not end.
 
-Two repos still carry hand-written cards. `loom-warp` and `loom-weave`
-have no `thread.json`, so there is no node to read. Whether such a
-repo gains a root node or keeps a hand card is OPEN.
+A repo that has no tree gains a standalone operation root: type
+`operation`, `isPartOf` empty, same shape as `loom-weave-godot`.
+`card.py` generates the README card from that node. Walkers skip
+`tests/` so fixture trees are not the repo tree. Ruled 2026-09-03.
+Closes the OPEN on which node carries close-out in a repo with no
+tree. `loom-warp` and `loom-weave` now have one. This repo's root
+is the same shape.
 
 `loom-apollo-13` keeps a hand card on purpose: its root is a finished
 1970 record, and live status does not get written onto a closed node.

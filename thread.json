@@ -1,11 +1,11 @@
 {
   "guid": "1abce9a0-21e5-446c-8de9-431e8b42c6e5",
   "name": "loom",
-  "type": "project",
+  "type": "operation",
   "actualStart": "2026-09-01",
   "state": "active",
   "isPartOf": "",
-  "justDid": "Close-out fields added to the schema at v1.1.0. The card is a generated view now, not authored text.",
+  "justDid": "Root is an operation, same shape as loom-weave-godot. PROCESS.md OPEN closed. loom-warp and loom-weave have standalone operation roots. Apollo stays hand-written.",
   "next": "Weaver PDCA cycle one in loom-weave-godot. The self-render reads this tree once it runs.",
   "sourceVerified": false
 }
