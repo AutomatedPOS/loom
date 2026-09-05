@@ -8,4 +8,4 @@ Tethered repos, each versioned independently: `loom` (this) →
 minted) → `loom-weave` (render contract) / `loom-weave-godot`
 (first weave). `loom-apollo-13` is the demo tree.
 
-Process: `PROCESS.md`. Design bible (tier one, first pass): `DESIGN-BIBLE.md`.
+Process: `PROCESS.md`. Design bible (tier one, first pass): `DESIGN-BIBLE.md`. Inner skins: Grok (Cursor).

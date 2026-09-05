@@ -1,0 +1,1025 @@
+{
+  "id": "loom_glyph_factory",
+  "revision": 0,
+  "last_node_id": 19,
+  "last_link_id": 21,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        340,
+        98
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            4
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            1,
+            2
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            9
+          ],
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "SDXL/sd_xl_base_1.0.safetensors"
+      ],
+      "title": "SDXL Base"
+    },
+    {
+      "id": 8,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        40,
+        180
+      ],
+      "size": [
+        340,
+        280
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            3
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimitiveStringMultiline"
+      },
+      "widgets_values": [
+        "flat minimalist pictogram of an open-end spanner, front view, orthographic, solid black filled silhouette on plain white background, details as white negative-space cutouts, thick uniform silhouette, centered, square composition, no outline strokes, no 3d, no isometric, no shadow, no gradient, no texture, no text, no letters, single icon only, must stay legible at 64 pixels"
+      ],
+      "title": "Prompt (external)"
+    },
+    {
+      "id": 4,
+      "type": "EmptyLatentImage",
+      "pos": [
+        40,
+        500
+      ],
+      "size": [
+        340,
+        106
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            7
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        1024,
+        1024,
+        4
+      ],
+      "title": "1024 square batch"
+    },
+    {
+      "id": 2,
+      "type": "CLIPTextEncode",
+      "pos": [
+        430,
+        40
+      ],
+      "size": [
+        340,
+        120
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 3,
+          "widget": {
+            "name": "text"
+          }
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            5
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "flat minimalist pictogram of an open-end spanner, front view, orthographic, solid black filled silhouette on plain white background, details as white negative-space cutouts, thick uniform silhouette, centered, square composition, no outline strokes, no 3d, no isometric, no shadow, no gradient, no texture, no text, no letters, single icon only, must stay legible at 64 pixels"
+      ],
+      "title": "Positive"
+    },
+    {
+      "id": 3,
+      "type": "CLIPTextEncode",
+      "pos": [
+        430,
+        200
+      ],
+      "size": [
+        340,
+        160
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            6
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "photo, 3d, realistic, shading, gradient, thin lines, multiple objects, background scene, text, watermark, color, multiple icons, icon sheet, grid, collage, pattern, repeating, many symbols, isometric, perspective, crossed, pair, two tools, outline only, extrusion"
+      ],
+      "title": "Negative (locked)"
+    },
+    {
+      "id": 5,
+      "type": "KSampler",
+      "pos": [
+        430,
+        400
+      ],
+      "size": [
+        340,
+        262
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 4
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 5
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 6
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            8
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        2026090514,
+        "fixed",
+        28,
+        7.5,
+        "dpmpp_2m",
+        "karras",
+        1.0
+      ],
+      "title": "Sampler"
+    },
+    {
+      "id": 6,
+      "type": "VAEDecode",
+      "pos": [
+        820,
+        40
+      ],
+      "size": [
+        240,
+        46
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 8
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 9
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            10
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": [],
+      "title": "VAE Decode"
+    },
+    {
+      "id": 9,
+      "type": "ImageQuantize",
+      "pos": [
+        820,
+        130
+      ],
+      "size": [
+        240,
+        82
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 10
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            11
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageQuantize"
+      },
+      "widgets_values": [
+        2,
+        "none"
+      ],
+      "title": "2-color"
+    },
+    {
+      "id": 16,
+      "type": "ImageInvert",
+      "pos": [
+        820,
+        250
+      ],
+      "size": [
+        240,
+        46
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 11
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            12
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageInvert"
+      },
+      "widgets_values": [],
+      "title": "White on black"
+    },
+    {
+      "id": 17,
+      "type": "ImageToMask",
+      "pos": [
+        820,
+        340
+      ],
+      "size": [
+        240,
+        58
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 12
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            13
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageToMask"
+      },
+      "widgets_values": [
+        "red"
+      ],
+      "title": "To mask"
+    },
+    {
+      "id": 18,
+      "type": "ThresholdMask",
+      "pos": [
+        820,
+        440
+      ],
+      "size": [
+        240,
+        58
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 13
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            14
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ThresholdMask"
+      },
+      "widgets_values": [
+        0.5
+      ],
+      "title": "Hard cut"
+    },
+    {
+      "id": 19,
+      "type": "MaskToImage",
+      "pos": [
+        820,
+        540
+      ],
+      "size": [
+        240,
+        46
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 14
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            15,
+            16,
+            18,
+            20
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MaskToImage"
+      },
+      "widgets_values": [],
+      "title": "Pure BW"
+    },
+    {
+      "id": 7,
+      "type": "SaveImage",
+      "pos": [
+        1110,
+        40
+      ],
+      "size": [
+        320,
+        58
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 15
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": null,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "loom_glyph/1024"
+      ],
+      "title": "Save 1024"
+    },
+    {
+      "id": 10,
+      "type": "ImageScale",
+      "pos": [
+        1110,
+        140
+      ],
+      "size": [
+        320,
+        130
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 16
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            17
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageScale"
+      },
+      "widgets_values": [
+        "area",
+        512,
+        512,
+        "disabled"
+      ],
+      "title": "Scale 512"
+    },
+    {
+      "id": 13,
+      "type": "SaveImage",
+      "pos": [
+        1110,
+        310
+      ],
+      "size": [
+        320,
+        58
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 17
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": null,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "loom_glyph/512"
+      ],
+      "title": "Save 512"
+    },
+    {
+      "id": 11,
+      "type": "ImageScale",
+      "pos": [
+        1480,
+        40
+      ],
+      "size": [
+        320,
+        130
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 18
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            19
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageScale"
+      },
+      "widgets_values": [
+        "nearest-exact",
+        64,
+        64,
+        "disabled"
+      ],
+      "title": "Scale 64"
+    },
+    {
+      "id": 14,
+      "type": "SaveImage",
+      "pos": [
+        1480,
+        210
+      ],
+      "size": [
+        320,
+        58
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 19
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": null,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "loom_glyph/64"
+      ],
+      "title": "Save 64"
+    },
+    {
+      "id": 12,
+      "type": "ImageScale",
+      "pos": [
+        1480,
+        310
+      ],
+      "size": [
+        320,
+        130
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 20
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            21
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageScale"
+      },
+      "widgets_values": [
+        "nearest-exact",
+        32,
+        32,
+        "disabled"
+      ],
+      "title": "Scale 32"
+    },
+    {
+      "id": 15,
+      "type": "SaveImage",
+      "pos": [
+        1480,
+        480
+      ],
+      "size": [
+        320,
+        58
+      ],
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 21
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": null,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "loom_glyph/32"
+      ],
+      "title": "Save 32"
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      1,
+      2,
+      1,
+      "CLIP"
+    ],
+    [
+      2,
+      1,
+      1,
+      3,
+      0,
+      "CLIP"
+    ],
+    [
+      3,
+      8,
+      0,
+      2,
+      0,
+      "STRING"
+    ],
+    [
+      4,
+      1,
+      0,
+      5,
+      0,
+      "MODEL"
+    ],
+    [
+      5,
+      2,
+      0,
+      5,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      6,
+      3,
+      0,
+      5,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      7,
+      4,
+      0,
+      5,
+      3,
+      "LATENT"
+    ],
+    [
+      8,
+      5,
+      0,
+      6,
+      0,
+      "LATENT"
+    ],
+    [
+      9,
+      1,
+      2,
+      6,
+      1,
+      "VAE"
+    ],
+    [
+      10,
+      6,
+      0,
+      9,
+      0,
+      "IMAGE"
+    ],
+    [
+      11,
+      9,
+      0,
+      16,
+      0,
+      "IMAGE"
+    ],
+    [
+      12,
+      16,
+      0,
+      17,
+      0,
+      "IMAGE"
+    ],
+    [
+      13,
+      17,
+      0,
+      18,
+      0,
+      "MASK"
+    ],
+    [
+      14,
+      18,
+      0,
+      19,
+      0,
+      "MASK"
+    ],
+    [
+      15,
+      19,
+      0,
+      7,
+      0,
+      "IMAGE"
+    ],
+    [
+      16,
+      19,
+      0,
+      10,
+      0,
+      "IMAGE"
+    ],
+    [
+      17,
+      10,
+      0,
+      13,
+      0,
+      "IMAGE"
+    ],
+    [
+      18,
+      19,
+      0,
+      11,
+      0,
+      "IMAGE"
+    ],
+    [
+      19,
+      11,
+      0,
+      14,
+      0,
+      "IMAGE"
+    ],
+    [
+      20,
+      19,
+      0,
+      12,
+      0,
+      "IMAGE"
+    ],
+    [
+      21,
+      12,
+      0,
+      15,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "title": "Prompt",
+      "bounding": [
+        20,
+        10,
+        380,
+        620
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 2,
+      "title": "Sample",
+      "bounding": [
+        410,
+        10,
+        380,
+        670
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 3,
+      "title": "2-color invert threshold",
+      "bounding": [
+        800,
+        10,
+        280,
+        600
+      ],
+      "color": "#8A5A2B",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 4,
+      "title": "Saves",
+      "bounding": [
+        1090,
+        10,
+        730,
+        550
+      ],
+      "color": "#2B6B4F",
+      "font_size": 24,
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.7,
+      "offset": [
+        0,
+        0
+      ]
+    },
+    "info": {
+      "name": "loom_glyph_factory",
+      "author": "grok",
+      "description": "Loom glyph factory. Inner skins only. UI graph. API twin in workflows/api/.",
+      "category": "Loom",
+      "version": "1.0"
+    }
+  },
+  "version": 0.4
+}

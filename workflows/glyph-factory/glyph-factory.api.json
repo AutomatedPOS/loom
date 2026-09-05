@@ -1,0 +1,169 @@
+{
+  "1": {
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": { "title": "SDXL Base" },
+    "inputs": {
+      "ckpt_name": "SDXL/sd_xl_base_1.0.safetensors"
+    }
+  },
+  "8": {
+    "class_type": "PrimitiveStringMultiline",
+    "_meta": { "title": "Prompt (external)" },
+    "inputs": {
+      "value": "flat minimalist pictogram of an open-end spanner, front view, orthographic, solid black filled silhouette on plain white background, details as white negative-space cutouts, thick uniform silhouette, centered, square composition, no outline strokes, no 3d, no isometric, no shadow, no gradient, no texture, no text, no letters, single icon only, must stay legible at 64 pixels"
+    }
+  },
+  "2": {
+    "class_type": "CLIPTextEncode",
+    "_meta": { "title": "Positive" },
+    "inputs": {
+      "text": ["8", 0],
+      "clip": ["1", 1]
+    }
+  },
+  "3": {
+    "class_type": "CLIPTextEncode",
+    "_meta": { "title": "Negative (locked)" },
+    "inputs": {
+      "text": "photo, 3d, realistic, shading, gradient, thin lines, multiple objects, background scene, text, watermark, color, multiple icons, icon sheet, grid, collage, pattern, repeating, many symbols, isometric, perspective, crossed, pair, two tools, outline only, extrusion",
+      "clip": ["1", 1]
+    }
+  },
+  "4": {
+    "class_type": "EmptyLatentImage",
+    "_meta": { "title": "1024 square batch" },
+    "inputs": {
+      "width": 1024,
+      "height": 1024,
+      "batch_size": 4
+    }
+  },
+  "5": {
+    "class_type": "KSampler",
+    "_meta": { "title": "Sampler" },
+    "inputs": {
+      "seed": 2026090514,
+      "steps": 28,
+      "cfg": 7.5,
+      "sampler_name": "dpmpp_2m",
+      "scheduler": "karras",
+      "denoise": 1.0,
+      "model": ["1", 0],
+      "positive": ["2", 0],
+      "negative": ["3", 0],
+      "latent_image": ["4", 0]
+    }
+  },
+  "6": {
+    "class_type": "VAEDecode",
+    "_meta": { "title": "VAE Decode" },
+    "inputs": {
+      "samples": ["5", 0],
+      "vae": ["1", 2]
+    }
+  },
+  "9": {
+    "class_type": "ImageQuantize",
+    "_meta": { "title": "2-color" },
+    "inputs": {
+      "colors": 2,
+      "dither": "none",
+      "image": ["6", 0]
+    }
+  },
+  "16": {
+    "class_type": "ImageInvert",
+    "_meta": { "title": "White on black" },
+    "inputs": {
+      "image": ["9", 0]
+    }
+  },
+  "17": {
+    "class_type": "ImageToMask",
+    "_meta": { "title": "To mask" },
+    "inputs": {
+      "channel": "red",
+      "image": ["16", 0]
+    }
+  },
+  "18": {
+    "class_type": "ThresholdMask",
+    "_meta": { "title": "Hard cut" },
+    "inputs": {
+      "mask": ["17", 0],
+      "value": 0.5
+    }
+  },
+  "19": {
+    "class_type": "MaskToImage",
+    "_meta": { "title": "Pure BW" },
+    "inputs": {
+      "mask": ["18", 0]
+    }
+  },
+  "7": {
+    "class_type": "SaveImage",
+    "_meta": { "title": "Save 1024" },
+    "inputs": {
+      "filename_prefix": "loom_glyph/1024",
+      "images": ["19", 0]
+    }
+  },
+  "10": {
+    "class_type": "ImageScale",
+    "_meta": { "title": "Scale 512" },
+    "inputs": {
+      "upscale_method": "area",
+      "width": 512,
+      "height": 512,
+      "crop": "disabled",
+      "image": ["19", 0]
+    }
+  },
+  "13": {
+    "class_type": "SaveImage",
+    "_meta": { "title": "Save 512" },
+    "inputs": {
+      "filename_prefix": "loom_glyph/512",
+      "images": ["10", 0]
+    }
+  },
+  "11": {
+    "class_type": "ImageScale",
+    "_meta": { "title": "Scale 64" },
+    "inputs": {
+      "upscale_method": "nearest-exact",
+      "width": 64,
+      "height": 64,
+      "crop": "disabled",
+      "image": ["19", 0]
+    }
+  },
+  "14": {
+    "class_type": "SaveImage",
+    "_meta": { "title": "Save 64" },
+    "inputs": {
+      "filename_prefix": "loom_glyph/64",
+      "images": ["11", 0]
+    }
+  },
+  "12": {
+    "class_type": "ImageScale",
+    "_meta": { "title": "Scale 32" },
+    "inputs": {
+      "upscale_method": "nearest-exact",
+      "width": 32,
+      "height": 32,
+      "crop": "disabled",
+      "image": ["19", 0]
+    }
+  },
+  "15": {
+    "class_type": "SaveImage",
+    "_meta": { "title": "Save 32" },
+    "inputs": {
+      "filename_prefix": "loom_glyph/32",
+      "images": ["12", 0]
+    }
+  }
+}

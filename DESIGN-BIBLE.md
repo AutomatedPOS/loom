@@ -40,7 +40,7 @@ bible section. It comes off before S7 files.
 - **out_of_scope** — three things:
   1. The writer tool. The renderer reads and never writes; whatever writes is a separate tool, not yet built, and wanted.
   2. Engine-specific look. That is tier two.
-  3. Glyph artwork production. The grammar and references stay in; the drawing does not. The bible is the brief that gets handed off.
+  3. Glyph artwork production. The grammar and references stay in; the drawing does not. The bible is the brief. Ruled 2026-09-05: that brief is handed to Grok (Cursor). Not Comfy. Not the glyph-factory graph. Inner skins are drawn in Cursor's image slot against this grammar, then inverted to the field (white mark on black; black mark on white in light mode). Drawings still do not live in this document. Seat names were scrubbed 2026-09-04; this seat is restored as the production lock only.
 - **target_platforms** — any platform that can run a browser, Chromium as the reference. Apple surfaces explicitly not targeted. Native and other engines are tier two.
 - **target_audience** — built for one, given away. Anyone running complex work who is losing track of it. Not enterprise, not teams. Deliberately not narrowed further.
 - **competitor_differentiation** — there is barely any software to buy. The tree is text in your own repo, the renderer is a swappable viewer, the intelligence is whatever model you point at it. Nothing owns your work.
@@ -51,7 +51,7 @@ bible section. It comes off before S7 files.
   Challenged 2026-09-04 as a placeholder. Sustained without amendment: derived from mood-board reference 1 (white glyphs on a dark sign face, accent spare; orange is the source palette). No restart. Carried unverified with the sight-explore packet.
 - **compliance** — accessibility. Colour-blind-safe accents and readable contrast on black. No data-privacy exposure, since nothing personal goes in the tree.
 - **document_tier** — tier one, filed at the loom root. Tier-two bibles cascade beneath it, one per surface.
-- **version_history** — version one. First walk, 2026-09-04.
+- **version_history** — version one. First walk, 2026-09-04. Glyph production seat locked to Grok (Cursor) 2026-09-05. No S1 restart; owner instructed the text in. S6 remains unsigned.
 - **signature** —
 
 ---
@@ -129,11 +129,11 @@ Nothing in the rigid half exists that did not come from the soft half. Structure
 
 ⚠ Carried unverified (sight-explore packet not returned).
 
-- **rule_text** — Black is not a background colour; it is the absence of content. Anything drawn is asserting something is there. Nothing is drawn to fill space, frame, or decorate.
+- **rule_text** — Black is not a background colour; it is the absence of content. Anything drawn is asserting something is there. Nothing is drawn to fill space, frame, or decorate. In light mode the field is white, and white is absence there exactly as black is in dark.
 - **do_examples** — The residue of the owner's own voice in the water is evidence of what has been said, not decoration.
 - **dont_examples** — Drawing to fill space, frame, or decorate.
 - **rationale** — Pillar one: the screen only holds things for you if everything on it means something.
-- **machine_value** —
+- **machine_value** — dark_field=#000000; light_field=#FFFFFF; field_is_absence=true
 
 #### 4.2 Accents
 
@@ -143,17 +143,19 @@ Numbering is the palette register. Precedence is what wins on a tile. Those are 
 - **do_examples** — Hazard reserved; nothing else may use it. Current task reads look here and nowhere else.
 - **dont_examples** — Rendering current task as *act now*. Spending a colour on blocked/waiting-on when `waitingOn` already reads it.
 - **rationale** — Blocked is already readable from `waitingOn`. The diff serves the drift-and-return pattern the screen exists to help with.
-- **machine_value** — accent_1=hazard; accent_2=current_task; accent_3=changed_since. Colour-blind-safe set, swappable. Orange is out.
+- **machine_value** — accent_1=hazard #8B1E1E / #8B1E1E; accent_2=current_task #D99A1F / #A06E10; accent_3=changed_since #6B8FAE / #4F7291. Dark / light. Hazard keeps one value; task and changed pull down on white so they read; hue holds. Colour-blind-safe set, swappable. Orange is out. Contrast is against each mode's field.
 
 #### 4.3 The glyph tile
 
 Closed as drafted. It was never in trouble. The re-open was the set dresser's, not the owner's.
 
-- **rule_text** — Two frames. Outer shape says where it fits: borrowed, never invented (BPMN and standard flowchart forms), carrying type and firmness — squared for settled, cloud for still forming. Inner glyph says what it is and is a swappable skin. Fill carries state. Silhouette separates human from machine, round versus boxy.
-- **do_examples** — A persona drawn as a man, a woman, a dragon, an animal — the slot in the grammar does not change.
-- **dont_examples** — Inventing a new shape.
+- **rule_text** — Two frames. Outer shape says where it fits: borrowed, never invented (BPMN and standard flowchart forms), carrying type and firmness — squared for settled, cloud for still forming. Inner glyph says what it is and is a swappable skin. Fill carries state. Silhouette separates human from machine, round versus boxy. As drawn: persona is the avatar circle with a human skin (sphere on a closed capsule, neck is the gap) or a robot skin (cube on cube, visor slot, stub antenna). Process is the flowchart rectangle with three stations on a rod; the spine reads only in the gaps. Tool is the flowchart predefined-process rectangle (double bars) with an open-end spanner. A diamond is a decision in that vocabulary and is not a tool.
+- **do_examples** — A persona drawn as a man, a woman, a dragon, an animal — the slot in the grammar does not change. Human and robot share the circle; the silhouette channel says who.
+- **dont_examples** — Inventing a new shape. A diamond for a tool.
 - **rationale** — Internationally understood vocabulary. Structure fixed, skin the user's. Same pattern as swappable accents, applied to marks.
-- **machine_value** —
+- **machine_value** — tile=64; stroke=2; skin_box=16,16 32x32; persona_frame=circle r 28; process_frame=rect 4,10 56x44; tool_frame=that rect plus bars at x 11 and x 53; skins=human,robot,process,tool; human=sphere+capsule; robot=cube+cube+visor+stub_antenna; process=three_stations_on_rod; tool=open_end_spanner; diamond=retired; glyph_artist=grok_cursor; glyph_factory=retired_as_production_seat
+
+Inner skins are drawn by Grok (Cursor) against this grammar. The Comfy glyph-factory graph is not the production seat.
 
 Round is human, square is machine. Human voice renders as a wave (oscilloscope form, rounded, varying) in the water. Synthesised voice renders as a square wave (hard on, hard off) up top, where the process is. The machine speaks about the plan; it has no formation space. Standing principle for marks not yet designed, with no exceptions. Film *Up* character-design attribution is unverified; do not file it as sourced.
 
@@ -175,13 +177,13 @@ Finding: there is no widely accepted open standard for run state on a node. BPMN
 - **do_examples** — Same subdued mechanic as disabled, as the completed shell that says not your problem, and as a subdued readout in 5.2.
 - **dont_examples** — Reading progress from how full the fill is. Inheriting a BPMN "state" convention that does not exist.
 - **rationale** — Motion-means-running sits with 4.15: motion carries firmness, and the snap is a real event.
-- **machine_value** — hollow=not_started; solid=done; motion=running; subdued=abandoned; hazard=broken.
+- **machine_value** — hollow=not_started; solid=done; motion=running; subdued=abandoned opacity=0.2; broken=skin fill hazard.
 
 #### 4.6 The null tile
 
 ⚠ Carried unverified (sight-explore packet not returned).
 
-- **rule_text** — Black means *nothing exists*. A null tile means *something should exist here and does not*. Absence that matters gets drawn. Two null conditions, carried as fill on one tile rather than as two glyphs: never filled, and was filled, now broken. Broken is hazard. Containers report their own state, so holes are not drawn wholesale. Three shell states: empty, part-filled, done. Individual null tiles appear only inside a part-filled container. A completed shell says *not your problem*.
+- **rule_text** — Black means *nothing exists*. In light mode white is that same absence. A null tile means *something should exist here and does not*. Absence that matters gets drawn. Two null conditions, carried as fill on one tile rather than as two glyphs: never filled, and was filled, now broken. Broken is hazard. Containers report their own state, so holes are not drawn wholesale. Three shell states: empty, part-filled, done. Individual null tiles appear only inside a part-filled container. A completed shell says *not your problem*.
 - **do_examples** — A gap inside a part-filled container.
 - **dont_examples** — Drawing holes wholesale across a completed shell. A numeric threshold for when holes appear.
 - **rationale** — Pillar one. No threshold is needed.
@@ -189,11 +191,11 @@ Finding: there is no widely accepted open standard for run state on a node. BPMN
 
 #### 4.7 Modifiers
 
-- **rule_text** — Accents are not additive. They are ranked. **Two accents visible at a time, not one.** Precedence: current task, then hazard, then changed-since. Where you are beats what is wrong beats what moved. Top two show. A thing that is your current task, hazarded and changed shows current task and hazard; the italics drop.
+- **rule_text** — Accents are not additive. They are ranked. **Two accents visible at a time, not one.** Precedence: current task, then hazard, then changed-since. Where you are beats what is wrong beats what moved. Top two show. A thing that is your current task, hazarded and changed shows current task and hazard; the italics drop. As drawn: current task takes the frame and a thin ring outside it (persona r 32, else rect 0,6 64x52) in task at 50 %, pulsing. Broken takes the skin in hazard; the frame stays ink unless a higher accent claims it. Changed-since takes the frame. Task and broken together: frame task, skin hazard; changed drops.
 - **do_examples** — Current task plus hazard on the same tile; changed-since drops.
 - **dont_examples** — One accent visible at a time, ever. Lighting the field up all over.
 - **rationale** — Density is bounded by the precedence rule rather than by a separate cap.
-- **machine_value** — max_visible_accents=2; precedence=current_task,hazard,changed_since.
+- **machine_value** — max_visible_accents=2; precedence=current_task,hazard,changed_since; task_target=frame+ring; hazard_target=skin; changed_target=frame.
 
 #### 4.8 Composition and reading order
 
